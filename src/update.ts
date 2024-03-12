@@ -14,16 +14,31 @@ const updates = async () => {
   //     },
   //   });
 
-  const updateManny = await prisma.post.updateMany({
+  // const updateManny = await prisma.post.updateMany({
+  //   where: {
+  //     title: "first title 3",
+  //   },
+  //   data: {
+  //     title: "new updated title 3",
+  //     published: true,
+  //   },
+  // });
+
+  // jodi id thake update hobe naile create hobe
+  const updateUpsert = await prisma.post.upsert({
     where: {
-      title: "first title 3",
+      id: 9,
     },
-    data: {
-      title: "new updated title 3",
-      published: true,
+    update: {
+      title: "update title 9",
+      authorName: "Sabbir",
+    },
+    create: {
+      title: "title 1",
+      content: "conten 1",
     },
   });
-  console.log({ updateManny });
+  console.log({ updateUpsert });
 };
 
 updates();
