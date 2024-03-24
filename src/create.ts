@@ -1,38 +1,53 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, UserRole } from "@prisma/client";
 // ()
 const prisma = new PrismaClient();
 
 const main = async () => {
-  //   // create single data
-  //   const result = await prisma.post.create({
-  //     data: {
-  //       title: "first title 3",
-  //       content: "this is content",
-  //       authorName: "Naimur Rahman",
-  //     },
-  //   });
+  // const createUser = await prisma.user.create({
+  //   data: {
+  //     userName: "user3",
+  //     email: "user3@ph.com",
+  //     role: UserRole.user,
+  //   },
+  // });
 
-  // create many data
-  const createManny = await prisma.post.createMany({
-    data: [
-      {
-        title: "title 5",
-        content: "this is content 1",
-        authorName: "Author 1",
+  // const createProfile = await prisma.profile.create({
+  //   data: {
+  //     bio: "this is bio...",
+  //     userId: 1,
+  //   },
+  // });
+
+  // const createCategory = await prisma.category.create({
+  //   data: {
+  //     name: "Full Stack Developer",
+  //   },
+  // });
+
+  const createPost = await prisma.post.create({
+    data: {
+      title: "this is title 5",
+      content: "this is content of the post. 5",
+      authorId: 1,
+      postCategory: {
+        create: [
+          {
+            categoryId: 1,
+          },
+          {
+            categoryId: 3,
+          },
+          {
+            categoryId: 4,
+          },
+        ],
       },
-      {
-        title: "title 6",
-        content: "this is content 2",
-        authorName: "Athor 2",
-      },
-      {
-        title: "title 7",
-        content: "this is content 3",
-        authorName: "Author 3",
-      },
-    ],
+    },
+    include: {
+      postCategory: true,
+    },
   });
-  console.log({ createManny });
+  console.log(createPost);
 };
 
 main();
