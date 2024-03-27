@@ -61,34 +61,34 @@ const filtering = async () => {
 
   //   console.log(startsWith);
 
-  // const userNameArray = ['user1', 'user2', 'user5'];
+  const userNameArray = ["user1", "user2", "user5"];
 
-  // const userNamesByArray = await prisma.user.findMany({
-  //     where: {
-  //         username: {
-  //             in: userNameArray
-  //         }
-  //     }
-  // });
+  const userNamesByArray = await prisma.user.findMany({
+    where: {
+      userName: {
+        in: userNameArray,
+      },
+    },
+  });
 
-  // const inDepthData = await prisma.user.findUnique({
-  //     where: {
-  //         id: 3
-  //     },
-  //     include: {
-  //         post: {
-  //             include: {
-  //                 postCategory: {
-  //                     include: {
-  //                         category: true
-  //                     }
-  //                 }
-  //             }
-  //         }
-  //     }
-  // })
+  const inDepthData = await prisma.user.findUnique({
+    where: {
+      id: 3,
+    },
+    include: {
+      post: {
+        include: {
+          postCategory: {
+            include: {
+              category: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
-  // console.dir(inDepthData, { depth: Infinity })
+  console.dir(inDepthData, { depth: Infinity });
 };
 
 filtering();
