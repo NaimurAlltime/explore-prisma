@@ -10,43 +10,43 @@ const aggregates = async () => {
     },
   });
 
-  console.log(avgAge);
+  //   console.log(avgAge);
 
   // find sum of age
-  // const sumAge = await prisma.user.aggregate({
-  //     _sum: {
-  //         age: true
-  //     }
-  // });
+  const sumAge = await prisma.user.aggregate({
+    _sum: {
+      age: true,
+    },
+  });
 
   // find count of age fields
-  // const countAge = await prisma.post.aggregate({
-  //     _count: {
-  //         title: true
-  //     },
-  //     where: {
-  //         published: true
-  //     }
-  // });
+  const countAge = await prisma.post.aggregate({
+    _count: {
+      title: true,
+    },
+    where: {
+      published: true,
+    },
+  });
 
   // find number of records
   const countData = await prisma.user.count();
 
   // find max age
-  // const maxAge = await prisma.user.aggregate({
-  //     _max: {
-  //         age: true
-  //     }
-  // });
+  const maxAge = await prisma.user.aggregate({
+    _max: {
+      age: true,
+    },
+  });
 
   // find min age
-  // const minAge = await prisma.user.aggregate({
-  //     _min: {
-  //         age: true
-  //     }
-  // });
+  const minAge = await prisma.user.aggregate({
+    _min: {
+      age: true,
+    },
+  });
 
-  // console.log(countAge);
+  //   console.log(minAge);
 };
 
 aggregates();
